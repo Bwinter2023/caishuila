@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>财税法资讯 · 企业主和财务的风险雷达</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f6f8; color: #2d3748; line-height: 1.6; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%); color: #fff; padding: 0 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+  .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+  .logo span { color: #d4a84b; }
+  .logo-sub { font-size: 12px; opacity: 0.7; margin-left: 10px; }
+  .nav { display: flex; gap: 4px; }
+  .nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; cursor: pointer; }
+  .nav a:hover, .nav a.active { background: rgba(255,255,255,0.15); color: #fff; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #1a365d 0%, #2d5a8a 100%); color: #fff; padding: 40px 20px; text-align: center; }
+  .hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 10px; }
+  .hero p { font-size: 15px; opacity: 0.8; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+  .hero .tagline { margin-top: 16px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .hero .tagline span { font-size: 13px; background: rgba(255,255,255,0.12); padding: 4px 14px; border-radius: 20px; }
+
+  /* Main layout */
+  .main { max-width: 1100px; margin: 0 auto; padding: 24px 20px; display: flex; gap: 28px; }
+  .feed { flex: 1; min-width: 0; }
+  .sidebar { width: 280px; flex-shrink: 0; }
+
+  /* Controls */
+  .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+  .search-box { flex: 1; min-width: 200px; padding: 9px 14px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; background: #fff; }
+  .search-box:focus { outline: none; border-color: #1a365d; }
+  .filter-btn { padding: 7px 16px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fff; font-size: 13px; cursor: pointer; transition: all 0.2s; color: #666; }
+  .filter-btn:hover { border-color: #1a365d; color: #1a365d; }
+  .filter-btn.active { background: #1a365d; color: #fff; border-color: #1a365d; }
+
+  /* Date header */
+  .date-header { font-size: 14px; font-weight: 600; color: #1a365d; margin: 20px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a365d; }
+
+  /* Article card */
+  .card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: box-shadow 0.2s; border: 1px solid #edf2f7; }
+  .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 13px; color: #999; }
+  .card-title { font-size: 17px; font-weight: 600; color: #1a365d; margin-bottom: 8px; line-height: 1.5; }
+  .card-title a { color: inherit; text-decoration: none; }
+  .card-title a:hover { color: #d4a84b; }
+  .card-tags { margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 4px; background: #edf2f7; color: #4a5568; }
+  .tag-tax { background: #fef3c7; color: #92400e; }
+  .tag-law { background: #e0e7ff; color: #3730a3; }
+  .tag-policy { background: #d1fae5; color: #065f46; }
+  .tag-case { background: #ffe4e6; color: #9b1c1c; }
+  .tag-practice { background: #e0f2fe; color: #075985; }
+  .card-summary { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 10px; }
+  .card-reason { font-size: 13px; color: #888; background: #fafafa; padding: 10px 14px; border-radius: 6px; border-left: 3px solid #d4a84b; line-height: 1.6; }
+  .card-reason strong { color: #1a365d; }
+
+  /* Sidebar */
+  .sidebar-section { background: #fff; border-radius: 10px; padding: 18px; margin-bottom: 16px; border: 1px solid #edf2f7; }
+  .sidebar-section h3 { font-size: 14px; font-weight: 600; color: #1a365d; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #edf2f7; }
+  .stat-item { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; color: #666; }
+  .stat-item span:first-child { color: #333; }
+  .sidebar-links { list-style: none; }
+  .sidebar-links li { padding: 6px 0; font-size: 13px; }
+  .sidebar-links a { color: #1a365d; text-decoration: none; }
+  .sidebar-links a:hover { color: #d4a84b; }
+
+  /* Empty state */
+  .empty { text-align: center; padding: 60px 20px; color: #999; }
+  .empty p { font-size: 15px; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 30px 20px; font-size: 13px; color: #999; border-top: 1px solid #edf2f7; margin-top: 20px; }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .main { flex-direction: column; }
+    .sidebar { width: 100%; }
+    .header-inner { flex-wrap: wrap; height: auto; padding: 10px 0; }
+    .nav { gap: 2px; flex-wrap: wrap; }
+    .nav a { font-size: 13px; padding: 4px 10px; }
+    .hero h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">财税法<span>资讯</span><span class="logo-sub">企业风险雷达</span></div>
+    <nav class="nav">
+      <a class="active" data-filter="all">全部</a>
+      <a data-filter="税务">税务</a>
+      <a data-filter="法律">法律</a>
+      <a data-filter="政策">政策</a>
+      <a data-filter="案例">案例</a>
+      <a data-filter="实务">实务</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>财税法资讯</h1>
+  <p>写给企业主和财务工作者的财税法律风险雷达。用真实案例和政策解读，帮你提前发现风险、算清成本、知道怎么做。</p>
+  <div class="tagline">
+    <span>💰 每个案例都算一笔账</span>
+    <span>⚖️ 税务 × 法律双视角</span>
+    <span>🎯 给你能做的动作</span>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+  <div class="feed">
+    <div class="controls">
+      <input class="search-box" id="search" placeholder="搜索文章标题或标签..." oninput="render()">
+    </div>
+    <div id="feed"></div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h3>📊 数据概览</h3>
+      <div class="stat-item"><span>文章总数</span><span id="total-count">0</span></div>
+      <div class="stat-item"><span>税务专题</span><span id="tax-count">0</span></div>
+      <div class="stat-item"><span>法律专题</span><span id="law-count">0</span></div>
+      <div class="stat-item"><span>案例解读</span><span id="case-count">0</span></div>
+    </div>
+    <div class="sidebar-section">
+      <h3>📌 近期文章</h3>
+      <ul class="sidebar-links" id="recent-links"></ul>
+    </div>
+    <div class="sidebar-section">
+      <h3>ℹ️ 关于本站</h3>
+      <p style="font-size:13px;color:#666;line-height:1.7;">
+        财税法资讯站由文中子财税团队运营。聚焦企业财税法律实务，覆盖上市公司税案解读、政策变化预警、合规操作指南。所有文章已做匿名化处理，不构成税务或法律建议。
+      </p>
+    </div>
+  </aside>
+</div>
+
+<footer class="footer">
+  <p>财税法资讯 · 文中子财税 &copy; 2026 &nbsp;|&nbsp; 文章仅供学习参考，不构成专业意见</p>
+</footer>
+
+<script>
+function getCategoryColor(cat) {
+  switch(cat) {
+    case '税务': return 'tag-tax';
+    case '法律': return 'tag-law';
+    case '政策': return 'tag-policy';
+    case '案例': return 'tag-case';
+    case '实务': return 'tag-practice';
+    default: return '';
+  }
+}
+
+function render() {
+  const search = (document.getElementById('search').value || '').toLowerCase();
+  const filter = document.querySelector('.nav a.active').dataset.filter;
+
+  let filtered = articles.filter(a => {
+    if (filter !== 'all' && a.category !== filter) return false;
+    if (search) {
+      const s = search;
+      return a.title.toLowerCase().includes(s) ||
+             a.tags.some(t => t.toLowerCase().includes(s)) ||
+             a.category.toLowerCase().includes(s);
+    }
+    return true;
+  });
+
+  const container = document.getElementById('feed');
+  if (!filtered.length) {
+    container.innerHTML = '<div class="empty"><p>暂无匹配文章</p></div>';
+    return;
+  }
+
+  // Group by date
+  const groups = {};
+  filtered.forEach(a => {
+    const d = a.date;
+    if (!groups[d]) groups[d] = [];
+    groups[d].push(a);
+  });
+
+  let html = '';
+  Object.keys(groups).sort().reverse().forEach(date => {
+    html += `<div class="date-header">${date}</div>`;
+    groups[date].forEach(a => {
+      html += `
+        <div class="card">
+          <div class="card-top">
+            <span>${a.category}</span>
+            <span>${a.date}</span>
+          </div>
+          <div class="card-title"><a href="articles/${a.id}.html">${a.title}</a></div>
+          <div class="card-tags">
+            <span class="tag ${getCategoryColor(a.category)}">${a.category}</span>
+            ${a.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+          <div class="card-summary">${a.summary}</div>
+          <div class="card-reason"><strong>推荐理由</strong>：${a.reason}</div>
+        </div>`;
+    });
+  });
+  container.innerHTML = html;
+
+  // Sidebar stats
+  document.getElementById('total-count').textContent = articles.length;
+  document.getElementById('tax-count').textContent = articles.filter(a => a.category === '税务').length;
+  document.getElementById('law-count').textContent = articles.filter(a => a.category === '法律').length;
+  document.getElementById('case-count').textContent = articles.filter(a => a.category === '案例').length;
+
+  const links = articles.slice().sort((a,b) => b.date.localeCompare(a.date)).slice(0, 10);
+  document.getElementById('recent-links').innerHTML = links.map(a =>
+    `<li><a href="articles/${a.id}.html">${a.title}</a></li>`
+  ).join('');
+}
+
+// Navigation filter
+document.querySelectorAll('.nav a').forEach(el => {
+  el.addEventListener('click', function() {
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    this.classList.add('active');
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
